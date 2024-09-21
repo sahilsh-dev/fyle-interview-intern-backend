@@ -105,5 +105,7 @@ class Assignment(db.Model):
         return cls.filter(cls.teacher_id == teacher_id).all()
 
     @classmethod
-    def get_all_assignments(cls):
+    def get_all_assignments(cls, principal_id, user_id):
+        principal = Principal.get_by_candidate_id(principal_id, user_id)
+        assertions.assert_found(principal, 'user id and principal id combination does not belong to a principal')
         return cls.filter(cls.state in [AssignmentStateEnum.SUBMITTED, AssignmentStateEnum.GRADED]).all()
