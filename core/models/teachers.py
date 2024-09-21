@@ -16,3 +16,7 @@ class Teacher(db.Model):
     @classmethod
     def get_all_teachers(cls):
         return cls.query.all()
+
+    @classmethod
+    def get_by_candidate_id(cls, _id, user_id):
+        return cls.query.filter_by(id=_id, user_id=user_id).first()
