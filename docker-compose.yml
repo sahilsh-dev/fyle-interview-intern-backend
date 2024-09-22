@@ -3,8 +3,6 @@ services:
     build: .
     ports:
       - "7755:7755"
-    volumes:
-      - .:/app
     environment:
       - GUNICORN_PORT=7755
       - FLASK_APP=core/server.py
