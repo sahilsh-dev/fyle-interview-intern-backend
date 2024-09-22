@@ -108,4 +108,4 @@ class Assignment(db.Model):
     def get_all_assignments(cls, principal_id, user_id):
         principal = Principal.get_by_candidate_id(principal_id, user_id)
         assertions.assert_found(principal, 'user id and principal id combination does not belong to a principal')
-        return cls.filter(cls.state in [AssignmentStateEnum.SUBMITTED, AssignmentStateEnum.GRADED]).all()
+        return cls.query.filter(cls.state.in_([AssignmentStateEnum.SUBMITTED, AssignmentStateEnum.GRADED])).all()
